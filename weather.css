@@ -10,6 +10,10 @@
   --card-bg: #fff;
   --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
+  --header-bg: rgba(67, 175, 252, 0.1);
+  --header-border: rgba(0, 0, 0, 0.06);
+  --card-border: rgba(0, 0, 0, 0.06);
+  --card-shadow: 0 10px 20px rgba(0,0,0,0.06);
   
   /* Weather-based colors */
   --sunny-bg: linear-gradient(135deg, #ff9a9e, #fad0c4);
@@ -42,6 +46,10 @@
   --light-text: #1e222d;
   --card-bg: #2d3243;
   --shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  --header-bg: rgba(255,255,255,0.03);
+  --header-border: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.04);
+  --card-shadow: 0 8px 18px rgba(0,0,0,0.6);
 }
 
 /* Weather-based background classes */
@@ -69,27 +77,30 @@ body.mist {
   background: linear-gradient(135deg, #C0C0C0, #D3D3D3);
 }
 
-.dark-mode body.clear {
+.body-dark-mode-fix { }
+
+/* Dark-mode variants targeted to body when it has the `dark-mode` class */
+body.dark-mode.clear {
   background: linear-gradient(135deg, #1e5799, #207cca);
 }
 
-.dark-mode body.clouds {
+body.dark-mode.clouds {
   background: linear-gradient(135deg, #4b6cb7, #182848);
 }
 
-.dark-mode body.rain {
+body.dark-mode.rain {
   background: linear-gradient(135deg, #3a7bd5, #3a6073);
 }
 
-.dark-mode body.thunderstorm {
+body.dark-mode.thunderstorm {
   background: linear-gradient(135deg, #0f2027, #203a43);
 }
 
-.dark-mode body.snow {
+body.dark-mode.snow {
   background: linear-gradient(135deg, #3d5e72, #5c8bbe);
 }
 
-.dark-mode body.mist {
+body.dark-mode.mist {
   background: linear-gradient(135deg, #505050, #707070);
 }
 
@@ -194,7 +205,8 @@ body.snow::before {
   max-width: none;
   background: var(--card-bg);
   border-radius: 0;
-  box-shadow: none;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--card-border);
   transition: var(--transition);
   overflow: auto;
   display: flex;
@@ -210,15 +222,54 @@ body.snow::before {
   align-items: center;
   padding: 25px 25px;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(67, 175, 252, 0.1);
+  border-bottom: 1px solid var(--header-border);
+  background: var(--header-bg);
   transition: var(--transition);
   flex-shrink: 0;
 }
 
-.dark-mode .wrapper header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(67, 175, 252, 0.2);
+/* Header override when body has dark-mode class */
+body.dark-mode .wrapper header {
+  border-bottom: 1px solid var(--header-border);
+  background: var(--header-bg);
+}
+
+/* Dark-mode control and form overrides to improve contrast */
+body.dark-mode .theme-toggle {
+  background: rgba(255,255,255,0.03);
+}
+
+body.dark-mode .input-part .content input {
+  border-color: rgba(255,255,255,0.06);
+  background: var(--card-bg);
+  color: var(--light-text);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .input-part .content button {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  background: var(--primary-color);
+  color: #fff;
+}
+
+body.dark-mode .input-part .info-txt.pending {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--light-text);
+}
+
+body.dark-mode .input-part .info-txt.error {
+  background: rgba(255,0,0,0.04);
+  border: 1px solid rgba(255,0,0,0.08);
+}
+
+body.dark-mode .wrapper .forecast-item,
+body.dark-mode .wrapper .column,
+body.dark-mode .wrapper .metric,
+body.dark-mode .wrapper .additional-details > div,
+body.dark-mode .wrapper .bottom-details > div {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.03);
 }
 
 header i {
