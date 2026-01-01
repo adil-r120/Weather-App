@@ -221,34 +221,21 @@ body.snow::before {
 }
 
 .wrapper {
-  width: 450px;
-  max-width: 95%;
-  /* Ensure it doesn't overflow on small generic screens */
+  width: 100%;
+  height: 100vh;
+  max-width: none;
   background: var(--card-bg);
-  border-radius: 16px;
+  border-radius: 0;
   box-shadow: var(--card-shadow);
   border: 1px solid var(--card-border);
   transition: var(--transition);
-  overflow: hidden;
-  /* Hide overflow to keep rounded corners */
-  max-height: 90vh;
-  /* Ensure card fits on screen */
+  overflow: auto;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
   z-index: 1;
-}
-
-@media (max-width: 500px) {
-  .wrapper {
-    width: 100%;
-    height: 100vh;
-    max-width: 100%;
-    border-radius: 0;
-    border: none;
-  }
 }
 
 .wrapper header {
@@ -1202,6 +1189,9 @@ header span {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .wrapper {
+    height: 100vh;
+  }
 
   .wrapper header {
     padding: 20px;
