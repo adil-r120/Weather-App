@@ -57,4 +57,4 @@ Contributions are welcome! Feel free to fork this repository and submit pull req
 This project is open source and available under the [MIT License](LICENSE).
 
 ## Author
-[Adil R](https://github.com/adil-r120)
+[Adil Raza](https://github.com/adil-r120)
